@@ -28,7 +28,7 @@ GameObject:
   - component: {fileID: 114616967139468526}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -94,7 +94,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1646965274505978}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 0.01
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -145,7 +145,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2753c47b39e385448f230d57bf827e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0.1
+  moveSpeed: 0.2
+  Collisionforce: 3
   up: 119
   down: 115
   lrft: 97
@@ -177,7 +178,7 @@ SphereCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1646965274505978}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: da2685f4e051bc246900a307816d0770, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2

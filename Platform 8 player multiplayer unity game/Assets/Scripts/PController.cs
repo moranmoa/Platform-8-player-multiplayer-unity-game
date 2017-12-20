@@ -53,6 +53,8 @@ public class PController : NetworkBehaviour {
 				Vector3 forceB = rbB.mass * rbB.velocity;
 				// Calculate Angle Between the collision point and the player
 				Vector3 dir = c.contacts[0].point - transform.position;
+				//Vector3 fA = forceA* dir;
+				//Vector3 fA
 				rbB.AddForce(forceA);
 				// We then get the opposite (-Vector3) and normalize it
 				dir = -dir.normalized;

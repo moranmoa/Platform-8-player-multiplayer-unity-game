@@ -39,7 +39,6 @@ public class PController : NetworkBehaviour {
 		}
 
 	}
-
 	void OnCollisionEnter(Collision c)
 	{
 		// force is how forcefully we will push the player away from the enemy.
@@ -48,16 +47,19 @@ public class PController : NetworkBehaviour {
 		// If the object we hit is the enemy
 		if (c.gameObject.tag == "Player")
 		{
+			Vector3 force = rb.mass * rb.velocity;
 			// Calculate Angle Between the collision point and the player
 			Vector3 dir = c.contacts[0].point - transform.position;
+			c.gameObject.GetComponent<Rigidbody>().AddForce(force);
 			// We then get the opposite (-Vector3) and normalize it
 			dir = -dir.normalized;
 			// And finally we add force in the direction of dir and multiply it by force. 
 			// This will push back the player
-			GetComponent<Rigidbody>().AddForce(dir*Collisionforce);
+			//GetComponent<Rigidbody>().AddForce(dir*force);
 			//c.gameObject.GetComponent<Rigidbody>().AddForce (-dir.normalized * Collisionforce);
 		}
 	}
+
 }
 
 /*

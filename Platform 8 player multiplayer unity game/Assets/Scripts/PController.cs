@@ -47,17 +47,24 @@ public class PController : NetworkBehaviour {
 		// If the object we hit is the enemy
 		if (c.gameObject.tag == "Player")
 		{
-			Vector3 force = rb.mass * rb.velocity;
-			// Calculate Angle Between the collision point and the player
-			Vector3 dir = c.contacts[0].point - transform.position;
-			c.gameObject.GetComponent<Rigidbody>().AddForce(force);
-			// We then get the opposite (-Vector3) and normalize it
-			dir = -dir.normalized;
-			// And finally we add force in the direction of dir and multiply it by force. 
-			// This will push back the player
-			//GetComponent<Rigidbody>().AddForce(dir*force);
-			//c.gameObject.GetComponent<Rigidbody>().AddForce (-dir.normalized * Collisionforce);
+			if(sizeOfV3(rb.velocity) > sizeOfV3(c.gameObject.GetComponent<Rigidbody>().velocity)){
+				Rigidbody rbB = c.gameObject.GetComponent<Rigidbody> ();
+				Vector3 forceA = rb.mass * rb.velocity;
+				Vector3 forceB = rbB.mass * rbB.velocity;
+				// Calculate Angle Between the collision point and the player
+				Vector3 dir = c.contacts[0].point - transform.position;
+				rbB.AddForce(forceA);
+				// We then get the opposite (-Vector3) and normalize it
+				dir = -dir.normalized;
+				// And finally we add force in the direction of dir and multiply it by force. 
+				// This will push back the player
+				rb.AddForce(forceB);
+				//c.gameObject.GetComponent<Rigidbody>().AddForce (-dir.normalized * Collisionforce);
+			}
 		}
+	}
+	float sizeOfV3 (Vector3 v3){
+		return (v3.x * v3.x + v3.y * v3.y + v3.z * v3.z);
 	}
 
 }

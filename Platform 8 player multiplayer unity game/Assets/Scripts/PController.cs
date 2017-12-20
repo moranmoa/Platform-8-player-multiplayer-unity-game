@@ -15,12 +15,14 @@ public class PController : NetworkBehaviour {
 	Rigidbody rb;
 	// Use this for initialization
 	void Start () {
+		if (!isLocalPlayer)
+			Destroy (this);
 		rb = GetComponent<Rigidbody> ();
 	}
 
 	// Update is called once per frame
 	void Update () {
-		if (isLocalPlayer) {
+	//	if (isLocalPlayer) {
 			Vector3 movement;
 			if (Input.GetKey (up)) {
 				movement = new Vector3 (-moveSpeed, 0, 0);
@@ -36,39 +38,40 @@ public class PController : NetworkBehaviour {
 			//float VAsix = Input.GetKey ("Vertical");
 			//movement = new Vector3 (-hAsix, 0, -VAsix);
 			rb.velocity += movement;
-		}
+	//	}
 
 	}
+	/*
 	void OnCollisionEnter(Collision c)
 	{
 		// force is how forcefully we will push the player away from the enemy.
+		//if (isLocalPlayer) {
 
-
-		// If the object we hit is the enemy
-		if (c.gameObject.tag == "Player")
-		{
-			if(sizeOfV3(rb.velocity) > sizeOfV3(c.gameObject.GetComponent<Rigidbody>().velocity)){
-				Rigidbody rbB = c.gameObject.GetComponent<Rigidbody> ();
-				Vector3 forceA = rb.mass * rb.velocity;
-				Vector3 forceB = rbB.mass * rbB.velocity;
-				// Calculate Angle Between the collision point and the player
-				Vector3 dir = c.contacts[0].point - transform.position;
-				//Vector3 fA = forceA* dir;
-				//Vector3 fA
-				rbB.AddForce(forceA);
-				// We then get the opposite (-Vector3) and normalize it
-				dir = -dir.normalized;
-				// And finally we add force in the direction of dir and multiply it by force. 
-				// This will push back the player
-				rb.AddForce(forceB);
-				//c.gameObject.GetComponent<Rigidbody>().AddForce (-dir.normalized * Collisionforce);
-			}
+			// If the object we hit is the enemy
+			if (c.gameObject.tag == "Player") {
+				if (sizeOfV3 (rb.velocity) > sizeOfV3 (c.gameObject.GetComponent<Rigidbody> ().velocity)) {
+					Rigidbody rbB = c.gameObject.GetComponent<Rigidbody> ();
+					Vector3 forceA = rb.mass * rb.velocity;
+					Vector3 forceB = rbB.mass * rbB.velocity;
+					// Calculate Angle Between the collision point and the player
+					Vector3 dir = c.contacts [0].point - transform.position;
+					//Vector3 fA = forceA* dir;
+					//Vector3 fA
+					rbB.AddForce (forceA * Collisionforce);
+					// We then get the opposite (-Vector3) and normalize it
+					dir = -dir.normalized;
+					// And finally we add force in the direction of dir and multiply it by force. 
+					// This will push back the player
+					rb.AddForce (forceB);
+					//c.gameObject.GetComponent<Rigidbody>().AddForce (-dir.normalized * Collisionforce);
+				}
+			//}
 		}
 	}
 	float sizeOfV3 (Vector3 v3){
 		return (v3.x * v3.x + v3.y * v3.y + v3.z * v3.z);
 	}
-
+*/
 }
 
 /*
